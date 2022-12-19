@@ -7,7 +7,7 @@ from fpdf import FPDF
 
 window = Tk()
 
-window.geometry('400x220+375+200')
+window.geometry('400x245+375+200')
 window.resizable(False, False)
 
 
@@ -26,6 +26,8 @@ def fpdf_processing():
 
     pdf.output('spravka.pdf')
 
+    notice['text'] = 'Успешно сохранено'
+
 
 Label(window, text='Имя:').place(x=20, y=10)
 Label(window, text='Фамилия:').place(x=20, y=30)
@@ -34,17 +36,19 @@ Label(window, text='Дата с:').place(x=20, y=130)
 Label(window, text='Дата по:').place(x=20, y=150)
 
 name = Text(window, height=1, width=20)
-title = Text(window, height=1, width=20)
-main_text = ScrolledText(window, height=4, width=30)
-data = Text(window, height=1, width=20)
-creator_name = Text(window, height=1, width=20)
+surname = Text(window, height=1, width=20)
+text = ScrolledText(window, height=4, width=30)
+date_from = Text(window, height=1, width=20)
+date_till = Text(window, height=1, width=20)
+button = Button(window, text='Сохранить PDF', width=20, command=fpdf_processing, bg='red', fg='white')
+notice = Label(window, text='')
 
 name.place(x=90, y=10)
-title.place(x=90, y=30)
-main_text.place(x=90, y=55)
-data.place(x=90, y=130)
-creator_name.place(x=90, y=150)
-
-Button(window, text='Сохранить PDF', width=20, command=fpdf_processing, bg='red', fg='white').place(x=130, y=185)
+surname.place(x=90, y=30)
+text.place(x=90, y=55)
+date_from.place(x=90, y=130)
+date_till.place(x=90, y=150)
+button.place(x=130, y=185)
+notice.place(x=145, y=215)
 
 window.mainloop()
