@@ -17,10 +17,9 @@ def fpdf_processing():
     pdf.add_page()
 
     pdf.add_font('DejaVu', '', 'DejaVuSansCondensed.ttf', uni=True)
-    pdf.set_font('DejaVu', '', 14)
-    # pdf.set_font("Arial", size=40)
+    pdf.set_font("DejaVu", size=40)
     pdf.cell(180, 50, txt="СПРАВКА", ln=1, align="C")
-    # pdf.set_font("Arial", size=15)
+    pdf.set_font("DejaVu", size=15)
     pdf.multi_cell(180, 10, txt="Выдана <Имя> <Фамилия>", align='L')
     pdf.multi_cell(180, 5, txt="<Текст>", align="L")
     pdf.multi_cell(180, 5, txt="М.П.", align="L")
