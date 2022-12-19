@@ -15,14 +15,16 @@ def fpdf_processing():
     pdf = FPDF(orientation='P', unit='mm', format='A4')
 
     pdf.add_page()
-
     pdf.add_font('DejaVu', '', 'DejaVuSansCondensed.ttf', uni=True)
     pdf.set_font("DejaVu", size=40)
-    pdf.cell(180, 50, txt="СПРАВКА", ln=1, align="C")
+    pdf.cell(0, 50, txt="СПРАВКА", ln=1, align="C")
     pdf.set_font("DejaVu", size=15)
-    pdf.multi_cell(180, 10, txt="Выдана <Имя> <Фамилия>", align='L')
-    pdf.multi_cell(180, 5, txt="<Текст>", align="L")
-    pdf.multi_cell(180, 5, txt="М.П.", align="L")
+    pdf.cell(0, 10, txt=f"Выдана {name.get('1.0', 'end-1c')} {surname.get('1.0', 'end-1c')}", align='L', ln=1)
+    pdf.multi_cell(0, 10, txt=text.get('1.0', 'end-1c'), align="L")
+    pdf.cell(0, 10, txt="Врач" + '_' * 30, align="R", ln=1)
+    pdf.cell(0, 15, txt=f"C {date_from.get('1.0', 'end-1c')} по {date_till.get('1.0', 'end-1c')}", align="R", ln=1)
+    pdf.cell(0, 25, txt="М.П.", align="L", ln=1)
+    pdf.image("./stamp.png", x=20, y=100, w=50, h=50, type='PNG')
 
     pdf.output('spravka.pdf')
 
@@ -44,6 +46,7 @@ button = Button(window, text='Сохранить PDF', width=20, command=fpdf_pr
 notice = Label(window, text='')
 
 name.place(x=90, y=10)
+name.focus_set()
 surname.place(x=90, y=30)
 text.place(x=90, y=55)
 date_from.place(x=90, y=130)
