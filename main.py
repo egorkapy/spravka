@@ -1,3 +1,6 @@
+# Распакуйте и переместите каталог шрифтов в папку fpdf.
+# https://github.com/reingart/pyfpdf/releases
+
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
 from fpdf import FPDF
@@ -13,12 +16,14 @@ def fpdf_processing():
 
     pdf.add_page()
 
-    pdf.set_font('Arial', size=40)
-    pdf.cell(180, 50, txt=title.get('1.0', END), ln=1, align="C")
-    pdf.set_font("Arial", size=12)
-    pdf.multi_cell(180, 10, txt=main_text.get('1.0', END), align='C')
-    pdf.set_y(260)
-    pdf.multi_cell(180, 5, txt=f"{data.get('1.0', END)}\n{creator_name.get('1.0', END)}", align="B")
+    pdf.add_font('DejaVu', '', 'DejaVuSansCondensed.ttf', uni=True)
+    pdf.set_font('DejaVu', '', 14)
+    # pdf.set_font("Arial", size=40)
+    pdf.cell(180, 50, txt="СПРАВКА", ln=1, align="C")
+    # pdf.set_font("Arial", size=15)
+    pdf.multi_cell(180, 10, txt="Выдана <Имя> <Фамилия>", align='L')
+    pdf.multi_cell(180, 5, txt="<Текст>", align="L")
+    pdf.multi_cell(180, 5, txt="М.П.", align="L")
 
     pdf.output('spravka.pdf')
 
